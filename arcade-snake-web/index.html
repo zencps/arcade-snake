@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arcade Snake - Neon Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="arcade-cabinet">
+    <h1 class="title">ARCADE SNAKE</h1>
+
+    <div class="scoreboard">
+      <div class="score-box">
+        <span class="label">SCORE</span>
+        <span id="score" class="value">0</span>
+      </div>
+      <div class="score-box">
+        <span class="label">HIGH SCORE</span>
+        <span id="highScore" class="value">0</span>
+      </div>
+    </div>
+
+    <div class="canvas-wrapper">
+      <canvas id="gameCanvas" width="400" height="400"></canvas>
+
+      <div id="overlay" class="overlay">
+        <p id="overlayTitle" class="overlay-title">PRESS START</p>
+        <p id="overlayMessage" class="overlay-message">Press SPACE or Click START to play<br>Use ARROW KEYS / WASD to move</p>
+        <button id="startBtn" class="arcade-btn">START GAME</button>
+      </div>
+    </div>
+
+    <div class="controls">
+      <p class="controls-hint">ARROWS / WASD to move &bull; SPACE to pause/restart &bull; R to reset</p>
+      <div class="dpad">
+        <button class="dpad-btn" data-dir="up" aria-label="Up">&#9650;</button>
+        <div class="dpad-row">
+          <button class="dpad-btn" data-dir="left" aria-label="Left">&#9664;</button>
+          <button class="dpad-btn" data-dir="down" aria-label="Down">&#9660;</button>
+          <button class="dpad-btn" data-dir="right" aria-label="Right">&#9654;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/graphics.js"></script>
+</body>
+</html>

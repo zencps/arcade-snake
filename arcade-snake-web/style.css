@@ -1,0 +1,253 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-black: #060608;
+  --panel-black: #0e0e14;
+  --neon-blue: #00a8ff;
+  --neon-blue-glow: #0080ff;
+  --neon-blue-light: #4dc3ff;
+  --arcade-white: #f0f0f0;
+  --arcade-green: #00ff66;
+  --arcade-green-head: #00cc52;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg-black);
+  background: radial-gradient(ellipse at center, #0a0a1a 0%, #050507 45%, #000000 100%);
+  color: var(--arcade-white);
+  font-family: 'Press Start 2P', 'Courier New', monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.arcade-cabinet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.title {
+  font-size: clamp(18px, 5vw, 28px);
+  color: var(--arcade-white);
+  text-shadow:
+    0 0 7px var(--neon-blue),
+    0 0 14px var(--neon-blue-glow),
+    0 0 28px var(--neon-blue-glow);
+  letter-spacing: 3px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 400px;
+  background: var(--panel-black);
+  border: 2px solid var(--neon-blue);
+  box-shadow:
+    0 0 8px var(--neon-blue),
+    inset 0 0 8px rgba(0, 168, 255, 0.15);
+  padding: 14px 18px;
+  border-radius: 6px;
+}
+
+.score-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: center;
+}
+
+.score-box .label {
+  font-size: 8px;
+  color: var(--neon-blue-light);
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+.score-box .value {
+  font-size: 16px;
+  color: var(--arcade-white);
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+}
+
+.canvas-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#gameCanvas {
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  border: 4px solid var(--neon-blue);
+  border-radius: 8px;
+  box-shadow:
+    0 0 12px var(--neon-blue),
+    0 0 24px var(--neon-blue-glow),
+    0 0 48px rgba(0, 128, 255, 0.4),
+    inset 0 0 20px rgba(0, 168, 255, 0.08);
+  display: block;
+  image-rendering: pixelated;
+}
+
+.overlay {
+  position: absolute;
+  inset: 4px;
+  background: rgba(0, 0, 0, 0.88);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  padding: 20px;
+  backdrop-filter: blur(2px);
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+.overlay-title {
+  font-size: 14px;
+  color: var(--neon-blue-light);
+  text-shadow: 0 0 10px var(--neon-blue);
+  line-height: 1.6;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.overlay-message {
+  font-size: 7px;
+  color: var(--arcade-white);
+  line-height: 2;
+  opacity: 0.85;
+  max-width: 280px;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.arcade-btn {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: #000;
+  background: var(--neon-blue);
+  border: 2px solid var(--neon-blue-light);
+  padding: 12px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow:
+    0 0 10px var(--neon-blue),
+    0 4px 0 #005a99;
+  transition: transform 0.08s, box-shadow 0.08s, background 0.2s;
+  letter-spacing: 1px;
+}
+
+.arcade-btn:hover {
+  background: var(--neon-blue-light);
+  box-shadow:
+    0 0 16px var(--neon-blue-light),
+    0 4px 0 #005a99;
+}
+
+.arcade-btn:active {
+  transform: translateY(4px);
+  box-shadow:
+    0 0 8px var(--neon-blue),
+    0 0 0 #005a99;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.controls-hint {
+  font-size: 6px;
+  color: #888;
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.dpad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.dpad-row {
+  display: flex;
+  gap: 4px;
+}
+
+.dpad-btn {
+  width: 48px;
+  height: 48px;
+  background: var(--panel-black);
+  border: 2px solid var(--neon-blue);
+  color: var(--arcade-white);
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(0, 168, 255, 0.4);
+  transition: background 0.1s, box-shadow 0.1s, transform 0.08s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dpad-btn:hover {
+  background: rgba(0, 168, 255, 0.15);
+  box-shadow: 0 0 10px var(--neon-blue);
+}
+
+.dpad-btn:active {
+  transform: scale(0.92);
+  background: var(--neon-blue);
+  color: #000;
+}
+
+@media (min-width: 700px) {
+  .dpad {
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .scoreboard {
+    padding: 10px 12px;
+  }
+  .score-box .label {
+    font-size: 7px;
+  }
+  .score-box .value {
+    font-size: 13px;
+  }
+}
